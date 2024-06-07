@@ -1,4 +1,4 @@
-package com.github.mvidecomposeweatherapp.ui.theme
+package com.github.mvidecomposeweatherapp.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
