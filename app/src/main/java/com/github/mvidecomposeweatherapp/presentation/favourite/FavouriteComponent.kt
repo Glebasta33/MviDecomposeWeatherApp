@@ -3,7 +3,7 @@ package com.github.mvidecomposeweatherapp.presentation.favourite
 import com.github.mvidecomposeweatherapp.domain.model.City
 import kotlinx.coroutines.flow.StateFlow
 
-interface FavoriteComponent {
+interface FavouriteComponent {
 
     val model: StateFlow<FavouriteStore.State>
 

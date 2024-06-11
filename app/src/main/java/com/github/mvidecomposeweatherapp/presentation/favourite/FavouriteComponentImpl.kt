@@ -13,13 +13,13 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class FavoriteComponentImpl @AssistedInject constructor(
+class FavouriteComponentImpl @AssistedInject constructor(
     private val favouriteStoreFactory: FavouriteStoreFactory,
     @Assisted("onCityItemClicked") onCityItemClicked: (City) -> Unit,
     @Assisted("onAddToFavouriteClicked") onAddToFavouriteClicked: () -> Unit,
     @Assisted("onSearchClicked") onSearchClicked: () -> Unit,
     @Assisted("componentContext") componentContext: ComponentContext
-) : FavoriteComponent, ComponentContext by componentContext {
+) : FavouriteComponent, ComponentContext by componentContext {
 
     private val store = instanceKeeper.getStore { favouriteStoreFactory.create() }
 
@@ -58,6 +58,6 @@ class FavoriteComponentImpl @AssistedInject constructor(
             @Assisted("onAddToFavouriteClicked") onAddToFavouriteClicked: () -> Unit,
             @Assisted("onSearchClicked") onSearchClicked: () -> Unit,
             @Assisted("componentContext") componentContext: ComponentContext
-        ): FavoriteComponentImpl
+        ): FavouriteComponentImpl
     }
 }

@@ -1,34 +1,26 @@
 package com.github.mvidecomposeweatherapp.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.github.mvidecomposeweatherapp.data.network.api.ApiFactory
-import com.github.mvidecomposeweatherapp.presentation.ui.theme.MviDecomposeWeatherAppTheme
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.arkivanov.decompose.defaultComponentContext
+import com.github.mvidecomposeweatherapp.WeatherApp
+import com.github.mvidecomposeweatherapp.presentation.root.RootComponentImpl
+import com.github.mvidecomposeweatherapp.presentation.root.RootContent
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var rootComponentFactory: RootComponentImpl.Factory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (applicationContext as WeatherApp).applicationComponent.inject(this)
+        val rootComponent = rootComponentFactory.create(defaultComponentContext())
 
-        val apiService = ApiFactory.apiService
-
-        CoroutineScope(Dispatchers.IO).launch {
-            val currentWeather = apiService.loadCurrentWeather("Moscow")
-            val forecast = apiService.loadForecast("Moscow")
-            val cities = apiService.searchCity("Moscow")
-
-            Log.d("MyTest", "$currentWeather " +
-                    "\n $forecast" +
-                    "\n $cities")
-        }
         setContent {
-            MviDecomposeWeatherAppTheme {
-
-            }
+            RootContent(component = rootComponent)
         }
     }
 }

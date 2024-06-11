@@ -2,6 +2,7 @@ package com.github.mvidecomposeweatherapp.di
 
 import android.content.Context
 import com.github.mvidecomposeweatherapp.di.annotation.ApplicationScope
+import com.github.mvidecomposeweatherapp.presentation.MainActivity
 import dagger.BindsInstance
 import dagger.Component
 
@@ -14,6 +15,8 @@ import dagger.Component
     ]
 )
 interface ApplicationComponent {
+
+    fun inject(mainActivity: MainActivity)
 
     @Component.Factory
     interface Factory {
